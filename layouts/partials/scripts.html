@@ -53,21 +53,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* ===================================================
      NAVBAR HIDE/SHOW ON HERO VIDEO PAGES
-     Hide navbar while hero video is visible, show after
+     - Visible at page top (absolute, in flow)
+     - Scrolls out of view naturally with the page
+     - Once hero is fully scrolled past, nav reappears fixed
      =================================================== */
   var heroVideo = document.querySelector('.hero-home, .hero-about');
   var siteHeader = document.querySelector('.site-header');
   if (heroVideo && siteHeader && heroVideo.querySelector('.hero-video-bg')) {
-    var navObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.15) {
-          siteHeader.classList.add('nav-hidden');
-        } else {
-          siteHeader.classList.remove('nav-hidden');
+    var headerH = siteHeader.offsetHeight;
+    var hasScrolledPastHeader = false;
+    var heroPassed = false;
+
+    function handleNavScroll() {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      var heroBottom = heroVideo.offsetTop + heroVideo.offsetHeight;
+
+      if (scrollY <= headerH) {
+        /* At the very top — show nav in its natural absolute position */
+        siteHeader.classList.add('hero-page-header');
+        siteHeader.classList.remove('nav-fixed', 'nav-hidden');
+        hasScrolledPastHeader = false;
+        heroPassed = false;
+      } else if (scrollY > headerH && scrollY < heroBottom) {
+        /* Scrolled past header but still in hero — hide nav */
+        if (!hasScrolledPastHeader) {
+          hasScrolledPastHeader = true;
         }
-      });
-    }, { threshold: [0, 0.15, 0.5] });
-    navObserver.observe(heroVideo);
+        siteHeader.classList.add('hero-page-header');
+        siteHeader.classList.remove('nav-fixed');
+        siteHeader.classList.add('nav-hidden');
+        heroPassed = false;
+      } else if (scrollY >= heroBottom) {
+        /* Past the hero — show nav fixed at top with slide-down */
+        siteHeader.classList.remove('nav-hidden', 'hero-page-header');
+        if (!heroPassed) {
+          heroPassed = true;
+          siteHeader.classList.add('nav-fixed');
+        }
+      }
+    }
+
+    /* Initial state: on hero pages, start as absolute so it scrolls naturally */
+    siteHeader.classList.add('hero-page-header');
+    siteHeader.classList.remove('nav-hidden');
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
+    handleNavScroll();
   }
 
   /* ===================================================

@@ -49,13 +49,31 @@ ul { list-style: disc; padding-left: 1.2em; }
   z-index: 1000;
   background: #fff;
   box-shadow: 0 1px 0 rgba(0,0,0,0.06);
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
 }
 
+/* On hero pages, header starts absolute (scrolls with page) */
+.hero-page-header {
+  position: absolute;
+}
+
+/* When hero has scrolled past: lock to top of viewport */
+.site-header.nav-fixed {
+  position: fixed;
+  top: 0;
+  animation: navSlideDown 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* While hero is still partly visible AND we've scrolled: hide */
 .site-header.nav-hidden {
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
+}
+
+@keyframes navSlideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
 }
 
 .header-inner {
@@ -2780,43 +2798,25 @@ textarea { resize: vertical; }
   flex-direction: column;
 }
 
-.reels-notch {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 28px;
-  background: #000;
-  border-radius: 0 0 18px 18px;
-  z-index: 10;
-}
-
-.reels-status-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 24px 4px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #fff;
-  z-index: 5;
-}
-
 .reels-app-header {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 8px 16px;
-  z-index: 5;
+  z-index: 15;
 }
 
 .reels-app-title {
   font-family: 'Raleway', sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   color: #fff;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .reels-viewport {
@@ -2828,98 +2828,167 @@ textarea { resize: vertical; }
 .reels-track {
   width: 100%;
   height: 100%;
-  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
 }
 
 .reel-slide {
   width: 100%;
   height: 100%;
   position: relative;
-  background: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #000;
+  overflow: hidden;
 }
 
-.reel-slide iframe {
+.reel-video {
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: cover;
 }
 
-.reel-slide .reel-loading {
+/* Reel Instagram-like UI overlay */
+.reel-ui {
   position: absolute;
-  color: rgba(255,255,255,0.4);
-  font-family: 'Raleway', sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.5px;
+  bottom: 60px;
+  right: 10px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 }
 
-.reels-swipe-hint {
-  text-align: center;
-  padding: 6px 0 2px;
-  font-family: 'Raleway', sans-serif;
+.reel-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.reel-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+  transition: transform 0.15s ease;
+}
+
+.reel-action-btn:active {
+  transform: scale(0.85);
+}
+
+.reel-action-count {
   font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 0.5px;
-  background: #000;
-  transition: opacity 0.5s ease;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
-.reels-swipe-hint .swipe-arrow {
-  display: inline-block;
-  animation: swipe-bounce 1.5s ease-in-out infinite;
-  font-size: 14px;
+.reel-like-btn.liked svg {
+  fill: #ff3040;
+  stroke: #ff3040;
 }
 
-@keyframes swipe-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
+.like-pop {
+  animation: likePop 0.3s ease;
 }
 
-.reels-swipe-hint.hidden {
-  opacity: 0;
+@keyframes likePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.reel-tap-to-unmute {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  z-index: 12;
   pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+/* Instagram-like bottom nav */
+.reels-bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0 4px;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  z-index: 10;
+}
+
+.reels-nav-item {
+  padding: 4px;
+  opacity: 0.5;
+}
+
+.reels-nav-item.reels-nav-active {
+  opacity: 1;
+}
+
+.reels-nav-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  border: 1.5px solid #fff;
 }
 
 .reels-iphone-wrapper {
   justify-content: center;
 }
 
-.reels-counter {
-  text-align: center;
-  padding: 6px 0;
-  font-family: 'Raleway', sans-serif;
-  font-size: 11px;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 1px;
-  background: #000;
+/* Meme Popup */
+.meme-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-.reels-nav-hint {
-  text-align: center;
-  padding: 4px 0 8px;
-  background: #000;
+.meme-popup-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.reels-nav-hint span {
-  display: inline-block;
-  font-size: 14px;
-  color: rgba(255,255,255,0.35);
-  animation: bounce-hint 1.5s ease-in-out infinite;
+.meme-popup-content {
+  max-width: 360px;
+  max-height: 80vh;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
 }
 
-@keyframes bounce-hint {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+.meme-popup-overlay.active .meme-popup-content {
+  transform: scale(1);
 }
 
-.reels-home-indicator {
-  width: 100px;
-  height: 4px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 2px;
-  margin: 6px auto 10px;
+.meme-popup-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 80vh;
 }
 
 /* Mood Board */
