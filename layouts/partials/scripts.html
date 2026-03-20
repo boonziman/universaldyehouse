@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
      Videos auto-play (muted) when scrolled into view,
      pause when scrolled out. Sound unmutes at 50%.
      =================================================== */
-  var allVideos = document.querySelectorAll('video');
+  /* Auto-play videos on scroll (skip data-no-autoplay videos) */
+  var allVideos = document.querySelectorAll('video:not([data-no-autoplay])');
   if (allVideos.length) {
     var videoObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
@@ -81,6 +82,12 @@ document.addEventListener('DOMContentLoaded', function() {
       videoObserver.observe(v);
     });
   }
+
+  /* Click-to-play videos (data-no-autoplay): click overlay to play, click again to pause */
+  var noAutoplayVideos = document.querySelectorAll('video[data-no-autoplay]');
+  noAutoplayVideos.forEach(function(v) {
+    v.muted = true;
+  });
 
   /* Scroll-triggered video sound: unmute when >50% in view */
   var videoSections = document.querySelectorAll('[data-video-section]');

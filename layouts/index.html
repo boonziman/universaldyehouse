@@ -70,7 +70,7 @@
 <section class="featured-video-section" data-video-section>
   <div class="featured-video-wrapper">
     <div class="featured-video-player">
-      <video id="vid-day-in-life" src='{{ "videos/day-in-a-life.mp4" | absURL }}' loop playsinline preload="metadata" muted></video>
+      <video id="vid-day-in-life" src='{{ "videos/day-in-a-life.mp4" | absURL }}' loop playsinline preload="metadata" muted data-no-autoplay></video>
       <div class="video-overlay-play" id="play-overlay-day" onclick="toggleVideo('vid-day-in-life', 'play-overlay-day')">
         <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" stroke="white" stroke-width="3"/><polygon points="32,24 58,40 32,56" fill="white"/></svg>
       </div>
