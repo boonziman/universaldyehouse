@@ -42,13 +42,20 @@ ul { list-style: disc; padding-left: 1.2em; }
 
 /* === HEADER === */
 .site-header {
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   background: #fff;
   box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.site-header.nav-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .header-inner {
@@ -216,7 +223,8 @@ ul { list-style: disc; padding-left: 1.2em; }
   overflow: hidden;
 }
 
-.hero-home {
+.hero-home,
+.hero-about {
   height: 100vh;
   max-height: none;
   background: #000;
@@ -2319,18 +2327,19 @@ textarea { resize: vertical; }
 /* Washi tape / pin decoration */
 .pin-tape {
   position: absolute;
-  top: -6px;
+  top: -8px;
   left: 50%;
   transform: translateX(-50%) rotate(-5deg);
-  width: 50px;
-  height: 14px;
-  background: rgba(201, 168, 124, 0.35);
+  width: 70px;
+  height: 20px;
+  background: rgba(201, 168, 124, 0.55);
   border-radius: 2px;
   z-index: 2;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
 .pin-tape-alt {
-  background: rgba(200, 180, 160, 0.3);
+  background: rgba(180, 160, 140, 0.5);
   transform: translateX(-50%) rotate(3deg);
 }
 
@@ -2494,6 +2503,165 @@ textarea { resize: vertical; }
   color: #b5afa5;
   font-style: italic;
   letter-spacing: 0.5px;
+}
+
+/* Cat Crossing Game */
+.cat-game-section {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+  margin: 0 auto 70px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.cat-game-header {
+  margin-bottom: 24px;
+}
+
+.cat-game-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c9a87c;
+  margin-bottom: 8px;
+}
+
+.cat-game-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-bottom: 8px;
+}
+
+.cat-game-subtitle {
+  font-size: 13px;
+  color: #999;
+}
+
+.cat-game-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  border: 2px solid #e8e3db;
+}
+
+#catGameCanvas {
+  display: block;
+  background: #1f2937;
+}
+
+.cat-game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.cat-game-start-screen,
+.cat-game-over-content {
+  text-align: center;
+}
+
+.cat-game-emoji {
+  font-size: 60px;
+  margin-bottom: 12px;
+  animation: catBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes catBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.cat-game-start-text,
+.cat-game-over-text {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.cat-game-score-text {
+  font-size: 18px;
+  color: #fde68a;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cat-game-retry-btn {
+  padding: 10px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: #c9a87c;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cat-game-retry-btn:hover {
+  background: #b89565;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201,168,124,0.4);
+}
+
+/* Mobile touch controls for the game */
+.cat-game-controls {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.cat-ctrl-row {
+  display: flex;
+  gap: 4px;
+}
+
+.cat-ctrl-btn {
+  width: 52px;
+  height: 52px;
+  border: 1.5px solid #e8e3db;
+  background: #fff;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  color: #555;
+}
+
+.cat-ctrl-btn:active {
+  background: #c9a87c;
+  color: #fff;
+  border-color: #c9a87c;
+  transform: scale(0.92);
+}
+
+/* Show touch controls on mobile or always for better UX */
+@media (max-width: 768px) {
+  .cat-game-controls { display: flex; }
+}
+
+/* Also show on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cat-game-controls { display: flex; }
 }
 
 /* Mood Board */

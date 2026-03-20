@@ -1,9 +1,13 @@
 {{ define "main" }}
-<!-- Hero Section -->
-<section class="hero hero-about" style="background-image: url('{{ "images/services/hero-services.jpg" | absURL }}');">
+<!-- Hero Section with Video Background (same as Home) -->
+<section class="hero hero-about">
+  <div class="hero-video-bg">
+    <iframe src="https://player.vimeo.com/video/313285327?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1#t=0.5"
+      frameborder="0" allow="autoplay; fullscreen" allowfullscreen loading="eager"></iframe>
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1 class="dye-reveal">About US</h1>
+    <h1 class="dye-reveal">About Us</h1>
   </div>
 </section>
 
