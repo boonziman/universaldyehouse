@@ -1,7 +1,6 @@
 {{ define "main" }}
 <!-- Hero Section with Video Background -->
 <section class="hero hero-home">
-<!-- URL TEST: absURL no slash={{ "css/test" | absURL }} absURL with slash={{ "css/test" | absURL }} relURL no slash={{ "css/test" | relURL }} relURL with slash={{ "/css/test" | relURL }} -->
   <div class="hero-video-bg">
     <iframe src="https://player.vimeo.com/video/313285327?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
       frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -139,4 +138,10 @@ function toggleMute(id, btn) {
   btn.querySelector('.vol-off').style.display = v.muted ? 'block' : 'none';
 }
 </script>
+
+<!-- Secret Button -->
+<div class="secret-btn-wrapper">
+  <a href='{{ "secret/" | absURL }}' class="secret-btn">🤫</a>
+</div>
+
 {{ end }}
