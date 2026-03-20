@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (videoSections.length) {
     var soundObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
-        var videos = entry.target.querySelectorAll('video');
+        var videos = entry.target.querySelectorAll('video:not([data-always-muted])');
         videos.forEach(function(v) {
           var btn = v.parentElement.querySelector('.video-vol-toggle') ||
                     entry.target.querySelector('.video-vol-toggle');

@@ -1056,6 +1056,50 @@ textarea { resize: vertical; }
 
 .video-vol-toggle:hover { background: rgba(0,0,0,0.7); }
 
+
+/* === DAY IN LIFE PLAY BUTTON === */
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(0,0,0,0.15);
+  transition: background 0.3s ease;
+  z-index: 5;
+}
+
+.video-play-overlay:hover {
+  background: rgba(0,0,0,0.25);
+}
+
+.video-play-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.play-btn-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.video-play-overlay:hover .play-btn-circle {
+  transform: scale(1.08);
+  background: rgba(0,0,0,0.55);
+}
+
 /* ========================================
    FEATURED VIDEO SECTION (Home — A Day in the Life)
    ======================================== */
@@ -1319,7 +1363,7 @@ textarea { resize: vertical; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center top;
 }
 
 .showroom-text {
@@ -1702,7 +1746,6 @@ textarea { resize: vertical; }
 .iphone-frame {
   width: 340px;
   min-height: 640px;
-  max-height: 700px;
   background: #000;
   border-radius: 44px;
   border: 3px solid #2a2a2a;
@@ -1852,7 +1895,7 @@ textarea { resize: vertical; }
   flex-direction: column;
   gap: 4px;
   background: #000;
-  min-height: 380px;
+  min-height: 260px;
   scroll-behavior: smooth;
 }
 
@@ -2055,6 +2098,108 @@ textarea { resize: vertical; }
   border-radius: 2px;
   margin: 8px auto 10px;
   flex-shrink: 0;
+}
+
+/* ===================================================
+   iOS KEYBOARD
+   =================================================== */
+.ios-keyboard {
+  background: #1c1c1e;
+  padding: 6px 3px 2px;
+  flex-shrink: 0;
+  border-top: 0.5px solid rgba(255,255,255,0.06);
+}
+
+.kb-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 5px;
+}
+
+.kb-row-mid {
+  padding: 0 12px;
+}
+
+.kb-row-bottom {
+  gap: 5px;
+}
+
+.kb-key {
+  min-width: 26px;
+  height: 36px;
+  background: #3a3a3c;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 15px;
+  font-family: -apple-system, 'SF Pro Text', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  user-select: none;
+  transition: background 0.08s ease, transform 0.08s ease;
+  position: relative;
+  text-transform: lowercase;
+}
+
+.kb-key-fn {
+  background: #2c2c2e;
+  min-width: 34px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+}
+
+.kb-key-sm {
+  min-width: 38px;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+}
+
+.kb-key-space {
+  flex: 1;
+  min-width: 0;
+  max-width: 170px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.5px;
+}
+
+/* Key press animation */
+.kb-key-active {
+  background: #007aff !important;
+  transform: scale(1.15) translateY(-2px);
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
+  color: #fff !important;
+}
+
+/* Key press pop-up preview (like real iOS) */
+.kb-key-active::after {
+  content: attr(data-key);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #007aff;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+  min-width: 32px;
+  height: 40px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  pointer-events: none;
+  text-transform: lowercase;
+}
+
+/* Hide pop-up for special keys */
+.kb-key-fn.kb-key-active::after {
+  display: none;
 }
 
 /* ===================================================
@@ -2454,6 +2599,8 @@ textarea { resize: vertical; }
     min-height: 580px;
     border-radius: 38px;
   }
+  .kb-key { min-width: 24px; height: 32px; font-size: 14px; }
+  .kb-key-space { max-width: 140px; }
   .pin-col-left, .pin-col-right { display: none; }
 }
 
@@ -2472,6 +2619,10 @@ textarea { resize: vertical; }
     width: 80px;
     height: 24px;
   }
+  .kb-key { min-width: 21px; height: 30px; font-size: 13px; gap: 3px; }
+  .kb-row { gap: 3px; }
+  .kb-key-space { max-width: 120px; }
+  .ios-keyboard { padding: 4px 2px 2px; }
 }
 
 
