@@ -1,0 +1,147 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* Mobile menu toggle */
+  var toggle = document.querySelector('.mobile-menu-toggle');
+  var navList = document.querySelector('.nav-list');
+  if (toggle && navList) {
+    toggle.addEventListener('click', function() {
+      navList.classList.toggle('open');
+    });
+  }
+
+  /* Scroll-triggered fade-in-up animations */
+  var fadeEls = document.querySelectorAll('.fade-in-up');
+  if (fadeEls.length) {
+    var fadeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+  }
+
+  /* Instagram stagger animation on scroll */
+  var instaItems = document.querySelectorAll('.insta-stagger');
+  if (instaItems.length) {
+    var instaObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          /* Stagger each item */
+          var items = entry.target.parentElement.querySelectorAll('.insta-stagger');
+          items.forEach(function(item, i) {
+            setTimeout(function() {
+              item.classList.add('visible');
+            }, i * 80);
+          });
+          instaObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    /* Only observe the first one to trigger the group */
+    if (instaItems[0]) instaObserver.observe(instaItems[0]);
+  }
+
+  /* Dye-reveal hero text animation — triggers the color splash */
+  var dyeEls = document.querySelectorAll('.dye-reveal, .dye-reveal-sub');
+  dyeEls.forEach(function(el, i) {
+    setTimeout(function() { el.classList.add('revealed'); }, 400 + i * 500);
+  });
+
+  /* ===================================================
+     VIDEO AUTO-PLAY ON SCROLL + SOUND MANAGEMENT
+     Videos auto-play (muted) when scrolled into view,
+     pause when scrolled out. Sound unmutes at 50%.
+     =================================================== */
+  var allVideos = document.querySelectorAll('video');
+  if (allVideos.length) {
+    var videoObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var video = entry.target;
+        if (entry.isIntersecting) {
+          /* Auto-play when visible */
+          var playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function() { /* ignore autoplay block */ });
+          }
+        } else {
+          /* Pause when out of view */
+          if (!video.paused) {
+            video.pause();
+          }
+        }
+      });
+    }, { threshold: 0.2 });
+
+    allVideos.forEach(function(v) {
+      v.muted = true;
+      videoObserver.observe(v);
+    });
+  }
+
+  /* Scroll-triggered video sound: unmute when >50% in view */
+  var videoSections = document.querySelectorAll('[data-video-section]');
+  if (videoSections.length) {
+    var soundObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var videos = entry.target.querySelectorAll('video');
+        videos.forEach(function(v) {
+          var btn = v.parentElement.querySelector('.video-vol-toggle') ||
+                    entry.target.querySelector('.video-vol-toggle');
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            v.muted = false;
+            if (btn) {
+              var on = btn.querySelector('.vol-on');
+              var off = btn.querySelector('.vol-off');
+              if (on) on.style.display = 'block';
+              if (off) off.style.display = 'none';
+            }
+          } else {
+            v.muted = true;
+            if (btn) {
+              var on = btn.querySelector('.vol-on');
+              var off = btn.querySelector('.vol-off');
+              if (on) on.style.display = 'none';
+              if (off) off.style.display = 'block';
+            }
+          }
+        });
+      });
+    }, { threshold: 0.5 });
+    videoSections.forEach(function(s) { soundObserver.observe(s); });
+  }
+
+  /* Auto-scrolling client logos carousel — duplicate for seamless loop */
+  var tracks = document.querySelectorAll('.clients-track');
+  tracks.forEach(function(track) {
+    var items = track.innerHTML;
+    track.innerHTML = items + items;
+  });
+
+  /* Gallery items stagger animation */
+  var galleryItems = document.querySelectorAll('.gallery-item.fade-in-up');
+  if (galleryItems.length) {
+    var galleryObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          /* Find index and add delay */
+          var allItems = Array.from(document.querySelectorAll('.gallery-item.fade-in-up'));
+          var idx = allItems.indexOf(entry.target);
+          var row = Math.floor(idx / 4);
+          var col = idx % 4;
+          var delay = (row * 60) + (col * 40);
+          setTimeout(function() {
+            entry.target.classList.add('visible');
+          }, delay);
+          galleryObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+    galleryItems.forEach(function(el) { galleryObserver.observe(el); });
+  }
+
+});
+</script>

@@ -1,0 +1,130 @@
+{{ define "main" }}
+<!-- Hero Section -->
+<section class="hero hero-services" style="background-image: url('/images/services/hero-services.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="dye-reveal">SERVICES</h1>
+  </div>
+</section>
+
+<!-- Treatments Section -->
+<section class="treatments-section">
+  <div class="container">
+    <h2 class="section-title fade-in-up">Treatments</h2>
+    <div class="treatments-grid">
+      <div class="treatment-card fade-in-up">
+        <div class="treatment-image">
+          <img src='{{ "images/services/aging.jpg" | absURL }}' alt="Aging treatments">
+        </div>
+        <div class="treatment-card-body">
+          <h3>Aging:</h3>
+          <ul>
+            <li>Stone washes (light, medium, heavy)</li>
+            <li>Enzyme Washes (light, medium, heavy)</li>
+            <li>Hard wash</li>
+            <li>Scour</li>
+            <li>Grinding</li>
+            <li>Hand sanding</li>
+            <li>Dry Stone (for leather &amp; other items that cannot be washed w/ water)</li>
+            <li>Fabric distressing</li>
+          </ul>
+          <a href='{{ "contact-us/" | absURL }}' class="btn btn-outline">INQUIRE HERE</a>
+        </div>
+      </div>
+      <div class="treatment-card fade-in-up delay-1">
+        <div class="treatment-image">
+          <img src='{{ "images/services/coating.jpg" | absURL }}' alt="Coating treatments">
+        </div>
+        <div class="treatment-card-body">
+          <h3>Coating:</h3>
+          <ul>
+            <li>Wax Coating</li>
+            <li>Pigment Sprays</li>
+            <li>Design Transfers &ndash; Snake Skin, Leopard, Foils &amp; other novelty heat transfers.</li>
+          </ul>
+          <a href='{{ "contact-us/" | absURL }}' class="btn btn-outline">INQUIRE HERE</a>
+        </div>
+      </div>
+      <div class="treatment-card fade-in-up delay-2">
+        <div class="treatment-image">
+          <img src='{{ "images/services/wash-dye.jpg" | absURL }}' alt="Wash and Dye treatments">
+        </div>
+        <div class="treatment-card-body">
+          <h3>Wash &amp; Dye:</h3>
+          <ul>
+            <li>Tinting all colors.</li>
+            <li>Oil Wash</li>
+            <li>Mineral Wash</li>
+            <li>Acid Wash</li>
+            <li>Dirty Wash</li>
+            <li>Tie Dye</li>
+            <li>Novelty Washes</li>
+            <li>Garment Dyes &ndash; Pigment, Reactive, Direct &amp; Sulfur Dye</li>
+            <li>Burn Outs</li>
+          </ul>
+          <a href='{{ "contact-us/" | absURL }}' class="btn btn-outline">INQUIRE HERE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process Videos Section -->
+<section class="process-videos-section" data-video-section>
+  <div class="process-videos-inner">
+    <div class="process-video-card fade-in-up">
+      <div class="process-video-player">
+        <video id="vid-palot" src='{{ "videos/palot-to-dye.mp4" | absURL }}' loop playsinline preload="metadata" muted></video>
+        <div class="video-overlay-play" id="play-overlay-palot" onclick="toggleVideo('vid-palot', 'play-overlay-palot')">
+          <svg width="60" height="60" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" stroke="white" stroke-width="3"/><polygon points="32,24 58,40 32,56" fill="white"/></svg>
+        </div>
+        <button class="video-vol-toggle" onclick="toggleMute('vid-palot', this)" title="Toggle sound">
+          <svg class="vol-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="vol-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+      </div>
+      <h4>From Palot to Dye</h4>
+      <p>Watch the full dyeing process from start to finish</p>
+    </div>
+    <div class="process-video-card fade-in-up delay-1">
+      <div class="process-video-player">
+        <video id="vid-equip" src='{{ "videos/equipment.mp4" | absURL }}' loop muted playsinline preload="metadata"></video>
+        <button class="video-vol-toggle" onclick="toggleMute('vid-equip', this)" title="Toggle sound">
+          <svg class="vol-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="vol-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+      </div>
+      <h4>Our Equipment</h4>
+      <p>Industrial-grade machinery for professional results</p>
+    </div>
+  </div>
+</section>
+
+<!-- Dye Lab Section -->
+<section class="dye-lab-section">
+  <div class="container">
+    <h3 class="dye-lab-title fade-in-up">Dye Lab:</h3>
+    <div class="dye-lab-content fade-in-up">
+      <p>Our on &ndash; site lab can formulate any color you need from scratch or to match.</p>
+      <p>Lab Dip Turn around time: 24-72 hrs</p>
+      <p>Sample turn around time: 24-72 hrs</p>
+      <p class="driver-note"><strong>*We have a driver that services the downtown area Mon-Fri for drop offs and pickups</strong></p>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleVideo(id, overlayId) {
+  var v = document.getElementById(id);
+  var o = document.getElementById(overlayId);
+  if (v.paused) { v.play(); o.classList.add('hidden'); }
+  else { v.pause(); o.classList.remove('hidden'); }
+}
+function toggleMute(id, btn) {
+  var v = document.getElementById(id);
+  v.muted = !v.muted;
+  btn.querySelector('.vol-on').style.display = v.muted ? 'none' : 'block';
+  btn.querySelector('.vol-off').style.display = v.muted ? 'block' : 'none';
+}
+</script>
+{{ end }}

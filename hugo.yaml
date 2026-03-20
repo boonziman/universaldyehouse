@@ -1,0 +1,37 @@
+baseURL: "https://boonziman.github.io/universaldyehouse/"
+languageCode: "en-us"
+title: "UNIVERSAL GARMENT WASH & DYE"
+theme: ""
+paginate: 10
+uglyURLs: false
+
+params:
+  description: "LOS ANGELES #1 DYE HOUSE"
+  phone: "(818)761 7373"
+  email: "Accounting@universaldyehouse.com"
+  address: "6813 Tujunga Ave.\nNorth Hollywood CA 91605"
+  instagram: "http://instagram.com/universaldyehouse"
+  ogImage: "/images/logo/logo.png"
+
+menu:
+  main:
+    - name: "ABOUT US"
+      url: "/about-us/"
+      weight: 1
+    - name: "SERVICES"
+      url: "/services/"
+      weight: 2
+    - name: "DEVELOPMENTS"
+      url: "/developments/"
+      weight: 3
+    - name: "GALLERY"
+      url: "/gallery/"
+      weight: 4
+    - name: "CONTACT US"
+      url: "/contact-us/"
+      weight: 5
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

@@ -1,0 +1,84 @@
+{{ define "main" }}
+<!-- Hero Section -->
+<section class="hero hero-about" style="background-image: url('/images/services/hero-services.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="dye-reveal">About US</h1>
+  </div>
+</section>
+
+<!-- About Content -->
+<section class="about-content">
+  <div class="container">
+    <h2 class="about-heading fade-in-up">About</h2>
+    <div class="about-description fade-in-up">
+      <p>Universal Garment Wash &amp; Dye has been a leader in the commercial laundry industry for over 25 years. We have commercial facilities capable of completing any job no matter how large or small. We specialize in all types of Novelty Washes, Aging &amp; Dying, and Denim.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Video Showcase: Let Us Bring Color -->
+<section class="video-showcase-section" data-video-section>
+  <div class="video-showcase-inner">
+    <div class="video-showcase-text fade-in-up">
+      <h2>Let Us Bring Color<br>Into Your Design</h2>
+      <p>From concept to creation &mdash; we transform fabrics with precision dyeing, custom washes, and innovative color techniques that bring your vision to life.</p>
+      <a href='{{ "services/" | absURL }}' class="btn btn-outline">OUR SERVICES</a>
+    </div>
+    <div class="video-showcase-player">
+      <video id="vid-bring-color" src='{{ "videos/bring-color.mp4" | absURL }}' loop playsinline preload="metadata" muted></video>
+      <div class="video-overlay-play" id="play-overlay-color" onclick="toggleVideo('vid-bring-color', 'play-overlay-color')">
+        <svg width="70" height="70" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" stroke="white" stroke-width="3"/><polygon points="32,24 58,40 32,56" fill="white"/></svg>
+      </div>
+      <button class="video-vol-toggle" onclick="toggleMute('vid-bring-color', this)" title="Toggle sound">
+        <svg class="vol-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        <svg class="vol-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Clients Section -->
+<section class="clients-section">
+  <div class="container">
+    <h2 class="section-title fade-in-up">Some of our clients:</h2>
+    <div class="clients-carousel">
+      <div class="clients-track">
+        <div class="client-logo"><img src='{{ "images/about/levis.jpg" | absURL }}' alt="Levis Strauss"></div>
+        <div class="client-logo"><img src='{{ "images/about/hellstar.jpg" | absURL }}' alt="Hellstar"></div>
+        <div class="client-logo"><img src='{{ "images/about/true-religion.png" | absURL }}' alt="True Religion"></div>
+        <div class="client-logo"><img src='{{ "images/about/eckhaus-latta.webp" | absURL }}' alt="Eckhaus Latta"></div>
+        <div class="client-logo"><img src='{{ "images/about/splendid.jpg" | absURL }}' alt="Splendid"></div>
+        <div class="client-logo"><img src='{{ "images/about/bella-dahl.jpg" | absURL }}' alt="Bella Dahl"></div>
+        <div class="client-logo"><img src='{{ "images/about/unknown1.png" | absURL }}' alt="Client"></div>
+        <div class="client-logo"><img src='{{ "images/about/kill-city.png" | absURL }}' alt="Kill City"></div>
+        <div class="client-logo"><img src='{{ "images/about/save-khaki.jpg" | absURL }}' alt="Save Khaki United"></div>
+        <div class="client-logo"><img src='{{ "images/about/robins-jeans.jpg" | absURL }}' alt="Robins Jeans"></div>
+        <div class="client-logo"><img src='{{ "images/about/elevee.png" | absURL }}' alt="Elevee"></div>
+        <div class="client-logo"><img src='{{ "images/about/jaya-apparel.jpg" | absURL }}' alt="Jaya Apparel"></div>
+        <div class="client-logo"><img src='{{ "images/about/mstars.jpg" | absURL }}' alt="M Stars"></div>
+        <div class="client-logo"><img src='{{ "images/about/band-of-outsiders.png" | absURL }}' alt="Band of Outsiders"></div>
+        <div class="client-logo"><img src='{{ "images/about/anonymous-jeans.jpg" | absURL }}' alt="Anonymous Jeans"></div>
+        <div class="client-logo"><img src='{{ "images/about/xcvi.png" | absURL }}' alt="XCVI"></div>
+        <div class="client-logo"><img src='{{ "images/about/greg-lauren.png" | absURL }}' alt="Greg Lauren"></div>
+        <div class="client-logo"><img src='{{ "images/about/unknown2.jpeg" | absURL }}' alt="Client"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleVideo(id, overlayId) {
+  var v = document.getElementById(id);
+  var o = document.getElementById(overlayId);
+  if (v.paused) { v.play(); o.classList.add('hidden'); }
+  else { v.pause(); o.classList.remove('hidden'); }
+}
+function toggleMute(id, btn) {
+  var v = document.getElementById(id);
+  v.muted = !v.muted;
+  btn.querySelector('.vol-on').style.display = v.muted ? 'none' : 'block';
+  btn.querySelector('.vol-off').style.display = v.muted ? 'block' : 'none';
+}
+</script>
+{{ end }}

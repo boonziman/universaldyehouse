@@ -1,0 +1,6 @@
+public/
+resources/
+.hugo_build.lock
+download_assets.sh
+*.DS_Store
+Real website html reference*

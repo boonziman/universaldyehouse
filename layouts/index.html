@@ -1,0 +1,142 @@
+{{ define "main" }}
+<!-- Hero Section with Video Background -->
+<section class="hero hero-home">
+<!-- URL TEST: absURL no slash={{ "css/test" | absURL }} absURL with slash={{ "css/test" | absURL }} relURL no slash={{ "css/test" | relURL }} relURL with slash={{ "/css/test" | relURL }} -->
+  <div class="hero-video-bg">
+    <iframe src="https://player.vimeo.com/video/313285327?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+      frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="dye-reveal">Universal Garment Wash &amp; Dye</h1>
+    <p class="hero-subtitle dye-reveal-sub">LOS ANGELES #1 DYE HOUSE</p>
+  </div>
+</section>
+
+<!-- Services Preview Section -->
+<section class="services-preview">
+  <h2 class="section-title fade-in-up">Garments to Dye for.</h2>
+  <div class="services-grid">
+    <div class="service-card fade-in-up">
+      <div class="service-image">
+        <img src='{{ "images/home/aging.jpg" | absURL }}' alt="Aging">
+      </div>
+      <h3>Aging</h3>
+      <a href='{{ "services/" | absURL }}' class="btn btn-outline">MORE INFO</a>
+    </div>
+    <div class="service-card fade-in-up delay-1">
+      <div class="service-image">
+        <img src='{{ "images/home/coating.jpg" | absURL }}' alt="Coating">
+      </div>
+      <h3>Coating</h3>
+      <a href='{{ "services/" | absURL }}' class="btn btn-outline">MORE INFO</a>
+    </div>
+    <div class="service-card fade-in-up delay-2">
+      <div class="service-image">
+        <img src='{{ "images/home/wash-dye.jpg" | absURL }}' alt="Wash and Dye">
+      </div>
+      <h3>Wash &amp; Dye</h3>
+      <a href='{{ "services/" | absURL }}' class="btn btn-outline">MORE INFO</a>
+    </div>
+  </div>
+</section>
+
+<!-- Trusted By Client Logos (repositioned above videos) -->
+<section class="home-clients-section">
+  <div class="container">
+    <h2 class="section-title fade-in-up">Trusted by Industry Leaders</h2>
+    <div class="clients-carousel">
+      <div class="clients-track" id="clients-track">
+        <div class="client-logo"><img src='{{ "images/about/levis.jpg" | absURL }}' alt="Levis"></div>
+        <div class="client-logo"><img src='{{ "images/about/hellstar.jpg" | absURL }}' alt="Hellstar"></div>
+        <div class="client-logo"><img src='{{ "images/about/true-religion.png" | absURL }}' alt="True Religion"></div>
+        <div class="client-logo"><img src='{{ "images/about/eckhaus-latta.webp" | absURL }}' alt="Eckhaus Latta"></div>
+        <div class="client-logo"><img src='{{ "images/about/splendid.jpg" | absURL }}' alt="Splendid"></div>
+        <div class="client-logo"><img src='{{ "images/about/bella-dahl.jpg" | absURL }}' alt="Bella Dahl"></div>
+        <div class="client-logo"><img src='{{ "images/about/kill-city.png" | absURL }}' alt="Kill City"></div>
+        <div class="client-logo"><img src='{{ "images/about/save-khaki.jpg" | absURL }}' alt="Save Khaki"></div>
+        <div class="client-logo"><img src='{{ "images/about/robins-jeans.jpg" | absURL }}' alt="Robins Jeans"></div>
+        <div class="client-logo"><img src='{{ "images/about/elevee.png" | absURL }}' alt="Elevee"></div>
+        <div class="client-logo"><img src='{{ "images/about/jaya-apparel.jpg" | absURL }}' alt="Jaya Apparel"></div>
+        <div class="client-logo"><img src='{{ "images/about/mstars.jpg" | absURL }}' alt="M Stars"></div>
+        <div class="client-logo"><img src='{{ "images/about/band-of-outsiders.png" | absURL }}' alt="Band of Outsiders"></div>
+        <div class="client-logo"><img src='{{ "images/about/xcvi.png" | absURL }}' alt="XCVI"></div>
+        <div class="client-logo"><img src='{{ "images/about/greg-lauren.png" | absURL }}' alt="Greg Lauren"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Video: A Day in the Life -->
+<section class="featured-video-section" data-video-section>
+  <div class="featured-video-wrapper">
+    <div class="featured-video-player">
+      <video id="vid-day-in-life" src='{{ "videos/day-in-a-life.mp4" | absURL }}' loop playsinline preload="metadata" muted></video>
+      <div class="video-overlay-play" id="play-overlay-day" onclick="toggleVideo('vid-day-in-life', 'play-overlay-day')">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" stroke="white" stroke-width="3"/><polygon points="32,24 58,40 32,56" fill="white"/></svg>
+      </div>
+      <button class="video-vol-toggle" onclick="toggleMute('vid-day-in-life', this)" title="Toggle sound">
+        <svg class="vol-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        <svg class="vol-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
+    </div>
+    <div class="featured-video-info fade-in-up">
+      <h2>A Day in the Life</h2>
+      <p>Step inside our facility and see the craftsmanship that goes into every garment we touch.</p>
+      <a href='{{ "about-us/" | absURL }}' class="btn btn-outline">LEARN MORE</a>
+    </div>
+  </div>
+</section>
+
+<!-- Behind the Scenes Cinematic -->
+<section class="cinematic-video-section" data-video-section>
+  <video id="vid-bts" src='{{ "videos/behind-the-scenes.mp4" | absURL }}' loop muted playsinline preload="auto"></video>
+  <div class="cinematic-overlay"></div>
+  <div class="cinematic-content">
+    <h2>Behind the Scenes</h2>
+    <p>See the artistry and dedication that powers LA's #1 dye house.</p>
+  </div>
+  <button class="video-vol-toggle cinematic-vol" onclick="toggleMute('vid-bts', this)" title="Toggle sound">
+    <svg class="vol-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    <svg class="vol-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+  </button>
+</section>
+
+<!-- Instagram Gallery — Full Bleed -->
+<section class="instagram-section">
+  <div class="instagram-header">
+    <h2>Follow Our Journey</h2>
+  </div>
+  <div class="instagram-gallery-grid">
+    <a href="https://www.instagram.com/p/BsmaDqShOai/" target="_blank" class="insta-grid-item insta-stagger"><img src='{{ "images/home/insta-01.jpg" | absURL }}' alt="Instagram post" loading="lazy"><div class="insta-hover"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/></svg></div></a>
+    <a href="https://www.instagram.com/p/Bp2eBNlBGrZ/" target="_blank" class="insta-grid-item insta-stagger"><img src='{{ "images/home/insta-02.jpg" | absURL }}' alt="Instagram post" loading="lazy"><div class="insta-hover"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/></svg></div></a>
+    <a href="https://www.instagram.com/p/Bp0URndBk9i/" target="_blank" class="insta-grid-item insta-stagger"><img src='{{ "images/home/insta-03.jpg" | absURL }}' alt="Instagram post" loading="lazy"><div class="insta-hover"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/></svg></div></a>
+    <a href="https://www.instagram.com/p/BlqVTFbDcLR/" target="_blank" class="insta-grid-item insta-stagger"><img src='{{ "images/home/insta-04.jpg" | absURL }}' alt="Instagram post" loading="lazy"><div class="insta-hover"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/></svg></div></a>
+    <a href="https://www.instagram.com/p/BgRg8Ajh59p/" target="_blank" class="insta-grid-item insta-stagger"><img src='{{ "images/home/insta-05.jpg" | absURL }}' alt="Instagram post" loading="lazy"><div class="insta-hover"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/></svg></div></a>
+    <a href="https://www.instagram.com/p/BgEuvtLB1Cu/" target="_blank" class="insta-grid-item insta-stagger"><img src='{{ "images/home/insta-06.jpg" | absURL }}' alt="Instagram post" loading="lazy"><div class="insta-hover"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/></svg></div></a>
+    <a href="https://www.instagram.com/p/BgAlLQElOpb/" target="_blank" class="insta-grid-item insta-stagger"><img src='{{ "images/home/insta-07.jpg" | absURL }}' alt="Instagram post" loading="lazy"><div class="insta-hover"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/></svg></div></a>
+    <a href="https://www.instagram.com/p/BfybezBlNuQ/" target="_blank" class="insta-grid-item insta-stagger"><img src='{{ "images/home/insta-08.jpg" | absURL }}' alt="Instagram post" loading="lazy"><div class="insta-hover"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/></svg></div></a>
+  </div>
+  <div class="instagram-cta">
+    <a href="https://www.instagram.com/universaldyehouse/" target="_blank" class="btn-instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      Follow @universaldyehouse
+    </a>
+  </div>
+</section>
+
+<script>
+function toggleVideo(id, overlayId) {
+  var v = document.getElementById(id);
+  var o = document.getElementById(overlayId);
+  if (v.paused) { v.play(); o.classList.add('hidden'); }
+  else { v.pause(); o.classList.remove('hidden'); }
+}
+function toggleMute(id, btn) {
+  var v = document.getElementById(id);
+  v.muted = !v.muted;
+  btn.querySelector('.vol-on').style.display = v.muted ? 'none' : 'block';
+  btn.querySelector('.vol-off').style.display = v.muted ? 'block' : 'none';
+}
+</script>
+{{ end }}

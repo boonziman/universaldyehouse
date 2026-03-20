@@ -1,0 +1,81 @@
+{{ define "main" }}
+<!-- Hero Section -->
+<section class="hero hero-contact" style="background-image: url('/images/heroes/hero-contact.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>CONTACT US</h1>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+  <div class="container">
+    <h2 class="contact-heading">Contact Us</h2>
+
+    <div class="contact-grid">
+      <!-- Form Column -->
+      <div class="contact-form-col">
+        <h3 class="form-title">Request a Quote</h3>
+        <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+          <div class="form-group">
+            <label>Name</label>
+            <div class="name-fields">
+              <div class="name-field">
+                <input type="text" name="firstName" required>
+                <span class="field-label">First Name <em>(required)</em></span>
+              </div>
+              <div class="name-field">
+                <input type="text" name="lastName" required>
+                <span class="field-label">Last Name <em>(required)</em></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address <em>(required)</em></label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label>Subject <em>(required)</em></label>
+            <input type="text" name="subject" required>
+          </div>
+          <div class="form-group">
+            <label>Message <em>(required)</em></label>
+            <textarea name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-outline btn-submit">SUBMIT</button>
+        </form>
+      </div>
+
+      <!-- Info Column -->
+      <div class="contact-info-col">
+        <h4>Main Office:</h4>
+        <p>6813 Tujunga Ave.<br>North Hollywood CA 91605</p>
+
+        <h4>Office Hours:</h4>
+        <p>Mon- Fri: 8:00AM - 3:30PM</p>
+
+        <h4>For Appointments:</h4>
+        <p>Mon – Fri: 11:00AM – 2:00PM</p>
+        <p>(Please call to schedule a time)</p>
+
+        <h4>Phone: (818)761 7373</h4>
+
+        <h4>Email: Accounting@universaldyehouse.com</h4>
+      </div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3299.8!2d-118.3812!3d34.1945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c295b8f2bc2e71%3A0x4b7f5e7b1e1e1e1e!2s6813+Tujunga+Ave%2C+North+Hollywood%2C+CA+91605!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
+        width="100%"
+        height="400"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+{{ end }}

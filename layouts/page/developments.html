@@ -1,0 +1,104 @@
+{{ define "main" }}
+<!-- Hero Section -->
+<section class="hero hero-developments" style="background-image: url('/images/developments/hero-developments.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="dye-reveal">DEVELOPMENTS</h1>
+  </div>
+</section>
+
+<!-- New Showroom Announcement — Full-width, flush layout -->
+<section class="showroom-announcement" data-video-section>
+  <div class="showroom-inner">
+    <div class="showroom-video-player">
+      <video id="vid-showroom" src='{{ "videos/new-showroom.mp4" | absURL }}' loop playsinline preload="metadata" muted></video>
+      <div class="video-overlay-play" id="play-overlay-showroom" onclick="toggleVideo('vid-showroom', 'play-overlay-showroom')">
+        <svg width="70" height="70" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" stroke="white" stroke-width="3"/><polygon points="32,24 58,40 32,56" fill="white"/></svg>
+      </div>
+      <button class="video-vol-toggle" onclick="toggleMute('vid-showroom', this)" title="Toggle sound">
+        <svg class="vol-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        <svg class="vol-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
+    </div>
+    <div class="showroom-text fade-in-up">
+      <span class="badge">COMING SOON</span>
+      <h2>New Showroom</h2>
+      <p>We're expanding. A brand new showroom is on the way &mdash; designed to showcase our capabilities and give our clients the experience they deserve.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Carousel Section -->
+<section class="developments-section">
+  <div class="container">
+    <div class="dev-carousel">
+      <div class="carousel-main">
+        <img id="carousel-main-img" src='{{ "images/developments/hero-developments.jpg" | absURL }}' alt="Development">
+        <button class="carousel-prev" onclick="changeSlide(-1)">&#8249;</button>
+        <button class="carousel-next" onclick="changeSlide(1)">&#8250;</button>
+      </div>
+      <div class="carousel-thumbs">
+        <img class="thumb active" src='{{ "images/developments/hero-developments.jpg" | absURL }}' alt="Development" onclick="setSlide(0)">
+        <img class="thumb" src='{{ "images/developments/dev-01.jpg" | absURL }}' alt="Development" onclick="setSlide(1)">
+        <img class="thumb" src='{{ "images/developments/dev-02.jpg" | absURL }}' alt="Development" onclick="setSlide(2)">
+        <img class="thumb" src='{{ "images/developments/dev-03.jpg" | absURL }}' alt="Development" onclick="setSlide(3)">
+        <img class="thumb" src='{{ "images/developments/dev-04.jpg" | absURL }}' alt="Development" onclick="setSlide(4)">
+        <img class="thumb" src='{{ "images/developments/dev-05.jpg" | absURL }}' alt="Development" onclick="setSlide(5)">
+        <img class="thumb" src='{{ "images/developments/dev-06.jpg" | absURL }}' alt="Development" onclick="setSlide(6)">
+        <img class="thumb" src='{{ "images/developments/dev-07.jpg" | absURL }}' alt="Development" onclick="setSlide(7)">
+        <img class="thumb" src='{{ "images/developments/dev-08.jpg" | absURL }}' alt="Development" onclick="setSlide(8)">
+        <img class="thumb" src='{{ "images/developments/dev-09.jpg" | absURL }}' alt="Development" onclick="setSlide(9)">
+        <img class="thumb" src='{{ "images/developments/dev-10.jpg" | absURL }}' alt="Development" onclick="setSlide(10)">
+        <img class="thumb" src='{{ "images/developments/dev-11.png" | absURL }}' alt="Development" onclick="setSlide(11)">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Washer Shot Accent Video -->
+<section class="accent-video-section" data-video-section>
+  <video id="vid-washer" src='{{ "videos/washer-shot.mp4" | absURL }}' loop muted playsinline preload="metadata"></video>
+  <div class="accent-video-overlay"></div>
+  <div class="accent-video-content">
+    <h3>Precision Equipment. Professional Results.</h3>
+  </div>
+  <button class="video-vol-toggle cinematic-vol" onclick="toggleMute('vid-washer', this)" title="Toggle sound">
+    <svg class="vol-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    <svg class="vol-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+  </button>
+</section>
+
+<script>
+  var slides = [
+    '/images/developments/hero-developments.jpg',
+    '/images/developments/dev-01.jpg', '/images/developments/dev-02.jpg',
+    '/images/developments/dev-03.jpg', '/images/developments/dev-04.jpg',
+    '/images/developments/dev-05.jpg', '/images/developments/dev-06.jpg',
+    '/images/developments/dev-07.jpg', '/images/developments/dev-08.jpg',
+    '/images/developments/dev-09.jpg', '/images/developments/dev-10.jpg',
+    '/images/developments/dev-11.png'
+  ];
+  var currentSlide = 0;
+  function setSlide(index) {
+    currentSlide = index;
+    document.getElementById('carousel-main-img').src = slides[index];
+    document.querySelectorAll('.thumb').forEach(function(t, i) { t.classList.toggle('active', i === index); });
+  }
+  function changeSlide(dir) {
+    currentSlide = (currentSlide + dir + slides.length) % slides.length;
+    setSlide(currentSlide);
+  }
+  function toggleVideo(id, overlayId) {
+    var v = document.getElementById(id);
+    var o = document.getElementById(overlayId);
+    if (v.paused) { v.play(); o.classList.add('hidden'); }
+    else { v.pause(); o.classList.remove('hidden'); }
+  }
+  function toggleMute(id, btn) {
+    var v = document.getElementById(id);
+    v.muted = !v.muted;
+    btn.querySelector('.vol-on').style.display = v.muted ? 'none' : 'block';
+    btn.querySelector('.vol-off').style.display = v.muted ? 'block' : 'none';
+  }
+</script>
+{{ end }}

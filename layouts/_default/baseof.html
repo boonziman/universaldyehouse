@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}UNIVERSAL GARMENT WASH &amp; DYE{{ else }}{{ .Title }} — UNIVERSAL GARMENT WASH &amp; DYE{{ end }}</title>
+  <link rel="icon" type="image/x-icon" href="{{ "images/logo/favicon.ico" | absURL }}">
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta property="og:site_name" content="UNIVERSAL GARMENT WASH &amp; DYE">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta property="og:image" content="{{ .Site.Params.ogImage }}">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
+</head>
+<body>
+  {{ partial "header.html" . }}
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+  {{ partial "scripts.html" . }}
+</body>
+</html>
