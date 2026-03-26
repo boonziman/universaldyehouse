@@ -2828,7 +2828,7 @@ textarea { resize: vertical; }
 .reels-track {
   width: 100%;
   height: 100%;
-  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 420ms cubic-bezier(0.33, 1, 0.68, 1);
   will-change: transform;
 }
 
@@ -2990,6 +2990,413 @@ textarea { resize: vertical; }
   height: auto;
   display: block;
   max-height: 80vh;
+}
+
+/* ============================================================
+   MAGIC LOVE NOTE (Crystal Ball) SECTION
+   ============================================================ */
+.magic-note-section {
+  text-align: center;
+  padding: 60px 20px 50px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.magic-note-header { margin-bottom: 30px; }
+
+.magic-note-badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c4a8e0;
+  background: rgba(196,168,224,0.12);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.magic-note-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: #2c2c2c;
+  margin-bottom: 8px;
+}
+
+.magic-note-sub {
+  font-size: 13px;
+  color: #999;
+  font-style: italic;
+}
+
+.magic-ball-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.magic-ball {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #6b5b8a, #3a2d5c 50%, #1a1033 80%);
+  position: relative;
+  margin: 0 auto;
+  box-shadow:
+    0 0 50px rgba(160,120,220,0.3),
+    0 12px 35px rgba(0,0,0,0.3),
+    inset 0 -8px 20px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease;
+  overflow: visible;
+}
+
+/* Cat ears */
+.cat-ear {
+  position: absolute;
+  top: -16px;
+  width: 0; height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 30px solid #3a2d5c;
+  z-index: 2;
+}
+.cat-ear-left { left: 22px; transform: rotate(-12deg); }
+.cat-ear-right { right: 22px; transform: rotate(12deg); }
+.cat-ear::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: -10px;
+  width: 0; height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 16px solid #e8b4d8;
+}
+
+.magic-ball:hover {
+  transform: scale(1.06);
+}
+
+.magic-ball:active {
+  transform: scale(0.96);
+}
+
+.magic-ball-inner {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #2d1f4e, #130e20);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Cat eyes */
+.cat-eyes {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 4px;
+  transition: opacity 0.3s;
+}
+.cat-eye {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #8fdfb0;
+  display: flex; align-items: center; justify-content: center;
+}
+.cat-pupil {
+  width: 8px; height: 16px;
+  background: #111;
+  border-radius: 50%;
+}
+.cat-nose {
+  font-size: 10px;
+  color: #e8b4d8;
+  margin-bottom: 2px;
+  line-height: 1;
+}
+
+/* Answer bubble — replaces the triangle, properly contained */
+.magic-ball-answer {
+  width: 100%;
+  padding: 4px 10px;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+.magic-ball-answer span {
+  display: block;
+  font-size: 10px;
+  color: #e8d5f5;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 130px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+
+.magic-ball-shine {
+  position: absolute;
+  top: 12%;
+  left: 22%;
+  width: 30%;
+  height: 20%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+@keyframes magicShake {
+  0%,100% { transform: translateX(0) rotate(0); }
+  15% { transform: translateX(-8px) rotate(-3deg); }
+  30% { transform: translateX(8px) rotate(3deg); }
+  45% { transform: translateX(-6px) rotate(-2deg); }
+  60% { transform: translateX(6px) rotate(2deg); }
+  75% { transform: translateX(-3px) rotate(-1deg); }
+  90% { transform: translateX(3px) rotate(1deg); }
+}
+
+.magic-ball-shake {
+  animation: magicShake 0.8s ease-in-out;
+}
+
+.magic-sparkles {
+  position: absolute;
+  inset: -30px;
+  pointer-events: none;
+}
+
+.magic-sparkle {
+  position: absolute;
+  font-size: 14px;
+  color: #c4a8e0;
+  opacity: 0;
+  transition: none;
+}
+
+.magic-sparkle[style*="--i:0"] { top: 0; left: 50%; }
+.magic-sparkle[style*="--i:1"] { top: 15%; right: 0; }
+.magic-sparkle[style*="--i:2"] { top: 50%; right: -10px; }
+.magic-sparkle[style*="--i:3"] { bottom: 15%; right: 5%; }
+.magic-sparkle[style*="--i:4"] { bottom: 0; left: 50%; }
+.magic-sparkle[style*="--i:5"] { bottom: 15%; left: 5%; }
+.magic-sparkle[style*="--i:6"] { top: 50%; left: -10px; }
+.magic-sparkle[style*="--i:7"] { top: 15%; left: 5%; }
+
+@keyframes sparkleFloat {
+  0% { opacity: 0; transform: scale(0) translateY(0); }
+  50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
+  100% { opacity: 0; transform: scale(0.5) translateY(-25px); }
+}
+
+.sparkle-active .magic-sparkle {
+  animation: sparkleFloat 1s ease-out forwards;
+}
+
+.sparkle-active .magic-sparkle[style*="--i:0"] { animation-delay: 0s; }
+.sparkle-active .magic-sparkle[style*="--i:1"] { animation-delay: 0.1s; }
+.sparkle-active .magic-sparkle[style*="--i:2"] { animation-delay: 0.15s; }
+.sparkle-active .magic-sparkle[style*="--i:3"] { animation-delay: 0.2s; }
+.sparkle-active .magic-sparkle[style*="--i:4"] { animation-delay: 0.25s; }
+.sparkle-active .magic-sparkle[style*="--i:5"] { animation-delay: 0.3s; }
+.sparkle-active .magic-sparkle[style*="--i:6"] { animation-delay: 0.35s; }
+.sparkle-active .magic-sparkle[style*="--i:7"] { animation-delay: 0.4s; }
+
+/* ============================================================
+   TRIVIA SECTION
+   ============================================================ */
+.trivia-section {
+  max-width: 480px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.trivia-header { margin-bottom: 28px; }
+
+.trivia-badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c9a87c;
+  background: rgba(201,168,124,0.12);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.trivia-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #2c2c2c;
+  margin-bottom: 6px;
+}
+
+.trivia-sub {
+  font-size: 13px;
+  color: #999;
+  letter-spacing: 1px;
+}
+
+.trivia-card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.trivia-category {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c4a8e0;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.trivia-progress {
+  width: 100%;
+  height: 4px;
+  background: #f0ebe3;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.trivia-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #c4a8e0, #c9a87c);
+  border-radius: 4px;
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+.trivia-question-num {
+  font-size: 11px;
+  color: #bbb;
+  margin-bottom: 16px;
+}
+
+.trivia-question {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #2c2c2c;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  min-height: 56px;
+}
+
+@keyframes triviaSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.trivia-q-in {
+  animation: triviaSlideIn 0.35s ease-out;
+}
+
+.trivia-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trivia-opt {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #e8e2da;
+  border-radius: 12px;
+  background: #faf7f2;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  color: #2c2c2c;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  animation: triviaSlideIn 0.3s ease-out backwards;
+}
+
+.trivia-opt:hover {
+  border-color: #c9a87c;
+  background: #f5f0e8;
+  transform: translateX(4px);
+}
+
+.trivia-opt.trivia-correct {
+  border-color: #4ade80;
+  background: rgba(74,222,128,0.12);
+  color: #166534;
+}
+
+.trivia-opt.trivia-wrong {
+  border-color: #f87171;
+  background: rgba(248,113,113,0.1);
+  color: #991b1b;
+}
+
+.trivia-feedback {
+  margin-top: 14px;
+  font-size: 15px;
+  min-height: 22px;
+  font-weight: 600;
+}
+
+.trivia-fb-correct { color: #4ade80; }
+.trivia-fb-wrong { color: #f87171; }
+
+.trivia-score-display {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 1px;
+}
+
+.trivia-final {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  text-align: center;
+  animation: triviaSlideIn 0.5s ease-out;
+}
+
+.trivia-final-emoji {
+  font-size: 52px;
+  margin-bottom: 16px;
+}
+
+.trivia-final-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #2c2c2c;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.trivia-restart-btn {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #c4a8e0, #c9a87c);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trivia-restart-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(196,168,224,0.4);
 }
 
 /* Mood Board */
